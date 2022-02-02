@@ -15,7 +15,7 @@
         <v-row class="d-flex justify-space-around pa-5">
           <v-col  xs="1">
             <h5 class="text-subtitle-1">Должность</h5>
-            <v-text-field label="введите должность" outlined></v-text-field>
+            <v-text-field v-model="position" label="введите должность" outlined></v-text-field>
             <h5 class="text-subtitle-1">Стаж работы</h5>
             <v-text-field label="введите стаж работы" outlined></v-text-field>
             <h5 class="text-subtitle-1">Навыки</h5>
@@ -46,6 +46,8 @@ export default {
   name: "PageInfo",
   data() {
     return {
+      position: "sample text",
+      areas: ["1", "2"],
       info: {
         img: "..src/assets/hidethepainharold.jpg",
 
@@ -59,5 +61,10 @@ export default {
       },
     };
   },
+  methods: {
+    add() {
+      
+    }
+  }
 };
 </script>
