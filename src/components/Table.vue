@@ -10,21 +10,25 @@
       <thead>
         <tr>
           <th class="text-left text-h5">Имя пользователя</th>
-          <th class="text-left text-h5">Возраст</th>
           <th class="text-left text-h5">Email</th>
+          <th class="text-left text-h5">Сайт</th>
           <th class="text-left text-h5">Организация</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in users" :key="user.name">
-          <td class="pa-5 text-body-1">
-              <router-link to="/Table/userPage">
-              {{ user.name }}
-              </router-link>
-              </td>
-          <td class="pa-5 body-1">{{ user.age }}</td>
+        <tr class="name" v-for="user in allUsers" :key="user.id">
+          <router-link
+            v-bind="user in allUsers"
+            active-class="is-active"
+            :key="user.id"
+            class="link"
+            :to="{ name: 'UserPage', params: { id: user.id } }">
+            <td class="pa-5 body-1">{{ user.name }}</td>
+            <v-divider></v-divider>
+        </router-link>
           <td class="pa-5 body-1">{{ user.email }}</td>
-          <td class="pa-5 body-1">{{ user.org }}</td>
+          <td class="pa-5 body-1">{{ user.website }}</td>
+          <td class="pa-5 body-1">{{ user.company.name }}</td>
         </tr>
       </tbody>
   </v-simple-table>
@@ -34,38 +38,22 @@
 
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
    name: "Table",
-  data() {
-    return {
-      users: [
-        {
-          name: "Фродо Бэггинс",
-          age: "26",
-          email: "frodo@sheer.com",
-          org: "ООО 'Шир'",
-        },
-        {
-          name: "Бильбо Бэггинс",
-          age: "78",
-          email: "bilbo@sheer.com",
-          org: "ООО 'Шир'",
-        },
-        {
-          name: "Сэмуайз Гэмджи",
-          age: "26",
-          email: "sam@sheer.com",
-          org: "ООО 'Фродо-инк'",
-        },
-        {
-          name: "Эовин",
-          age: "22",
-          email: "eowyn@Rohan.com",
-          org: "ООО 'Рохан'",
-        },
-      ],
-
-    };
-  },
-};
+      computed: mapGetters(['allUsers']),
+       async  created() {
+        this.$store.dispatch('fetchUsers')
+}
+}
 </script>
+
+<style>
+  .link {
+    text-decoration: none;
+     
+  }
+  .link:hover {
+    color: black;
+  }
+</style>

@@ -8,12 +8,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Table',
+    path: '/table',
+    name: 'table',
     component: Table
     },
   {
-    path: '/Table/userPage',
+    path: '/table/:id',
     name: 'UserPage',
     component: UserPage
   },

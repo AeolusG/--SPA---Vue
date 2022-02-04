@@ -4,7 +4,7 @@
     <v-app-bar
       app
       color="#94849B"
-      shrink-on-scroll
+     
       width="97%"
       class="ml-auto mr-auto"
   >
