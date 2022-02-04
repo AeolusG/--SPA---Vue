@@ -1,44 +1,41 @@
 <template>
-  <v-row class="d-flex justify-space-around">
+  <v-row class="d-flex justify-space-around ma-8" v-if="oneUser">
     <v-col md="4">
-      <v-card class="ma-8 flex-grow-1" color="white" height="30em">
-        <h2 class="text-h4">hello</h2>
+      <v-card class=" flex-grow-1" color="white" height="25em" >
+        <h2 class="text-h6">{{ oneUser.name }}</h2>
       </v-card>
     </v-col>
     <v-col xs="2">
-      <v-card class="ma-8 flex-grow-1" height="30em">
-        <v-row class="d-flex justify-space-around pa-5">
+      <v-card class="flex-grow-1" height="25em">
+        <v-row class="d-flex justify-space-around ">
           <v-col xs="1">
-            <h5 class="text-subtitle-1 ma-4">Номер телефона</h5>
-            <v-card height="3em" class="pa-3" label="введите должность" outlined v-if="user">
-              {{ user.phone }}
+            <h5 class="text-body-1 ma-2">Организация</h5>
+            <v-card height="3em" class="pa-3 ma-2" label="введите должность" outlined>
+              {{ oneUser.company.name }}
             </v-card>
-            <h5 class="text-subtitle-1">Номер телефона</h5>
-            <v-card height="3em" class="pa-3" label="введите должность" outlined v-if="user">
-              {{ user.phone }}
+            <h5 class="text-subtitle-1 ma-2">Слоган компании</h5>
+            <v-card height="3em" class="pa-3 ma-2" label="введите должность" outlined>
+              {{ oneUser.company.catchPhrase }}
             </v-card>
-            <h5 class="text-subtitle-1" >Номер телефона</h5>
-            <v-card height="3em" class="pa-3" label="введите должность" outlined v-if="user">
-              {{ user.phone }}
-            </v-card>
+             <h5 class="text-subtitle-1 ma-2">Направление</h5>
+            <v-card height="3em" class="pa-3 ma-2" label="введите должность" outlined>
+              {{ oneUser.company.bs }}
+            </v-card>   
           </v-col>
 
-          <v-col xs="3">
-            <h5 class="text-subtitle-1">Адрес проживания</h5>
-            <v-text-field label="введите город и улицу" outlined v-if="user">
-            </v-text-field>
-            <h5 class="text-subtitle-1">Номер телефона</h5>
-            <v-text-field
-              label="введите номер телефона"
-              outlined
-              v-if="user"
-            ></v-text-field>
-            <h5 class="text-subtitle-1">Хобби</h5>
-            <v-text-field
-              label="какие у вас хобби"
-              outlined
-              v-if="user"
-            ></v-text-field>
+          <v-col xs="1">
+            <h5 class="text-subtitle-1 ma-2">Номер телефона</h5>
+            <v-card height="3em" class="pa-3 ma-2" label="введите должность" outlined>
+              {{ oneUser.phone }}
+            </v-card>
+             <h5 class="text-subtitle-1 ma-2">Email</h5>
+            <v-card height="3em" class="pa-3 ma-2" label="введите должность" outlined>
+              {{ oneUser.email }}
+            </v-card>
+            <h5 class="text-subtitle-1 ma-2">Адрес проживания</h5>
+            <v-card height="3em" class="pa-3 ma-2" label="введите должность" outlined>
+              {{ oneUser.address.city }}, {{ oneUser.address.street }}, {{ oneUser.address.suite }}
+            </v-card>
           </v-col>
         </v-row>
       </v-card>
@@ -47,30 +44,18 @@
 </template>
 
 <script>
+ import {mapGetters} from 'vuex'
 export default {
   name: "userPage",
-  props: ["id"],
+   props: ["id"],
   data() {
-    return {
-      user: null,
-      endpoint: "https://my-json-server.typicode.com/AeolusG/SPA-on-Vue/users/",
+     return {
     };
   },
-
-  methods: {
-    async getUser(id = "1") {
-      let response = await fetch(`${this.endpoint}${id}`);
-      this.user = await response.json();
-    },
-  },
-  watch: {
-    $route() {
-      this.getUser(this.id);
-    },
-  },
-  created() {
-    this.getUser(this.id);
-  },
+  computed: mapGetters(['oneUser']),
+  async created() {
+    this.$store.dispatch('getUser',  this.$route.params.id)
+  }
 };
 </script>
 

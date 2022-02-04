@@ -3,7 +3,7 @@
   <v-app>
     <v-app-bar
       app
-      color="#94849B"
+      color="#0288D1"
      
       width="97%"
       class="ml-auto mr-auto"
@@ -23,7 +23,7 @@
     <v-card
       flat
       tile
-      color="#94849B"
+      color="#0288D1"
       width="97%"
       class="white--text ml-auto mr-auto text-center"
     >
