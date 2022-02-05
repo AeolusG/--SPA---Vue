@@ -42,6 +42,7 @@
 import {mapGetters} from 'vuex'
 export default {
    name: "Table",
+   props: ['allUsers'],
    data() {
      return {
        search: '',
