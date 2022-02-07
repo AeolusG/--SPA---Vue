@@ -10,6 +10,10 @@
 
 - Vue Router
 
+Ссылка на приложение:
+
+https://aeolusg.github.io/SPA-on-Vue/
+
 ## Project setup
 
 ```
