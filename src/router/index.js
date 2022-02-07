@@ -1,28 +1,27 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Table from '../components/Table.vue'
-import UserPage from '../components/UserPage.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import usersList from "../components/usersList.vue";
+import user from "../components/user.vue";
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/table',
-    name: 'table',
-    component: Table
-    },
-  {
-    path: '/table/:id',
-    name: 'UserPage',
-    component: UserPage
+    path: "/",
+    name: "table",
+    component: usersList,
   },
-]
+  {
+    path: "/table/:id",
+    name: "user",
+    component: user,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

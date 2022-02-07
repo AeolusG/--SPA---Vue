@@ -1,55 +1,44 @@
-
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="#0288D1"
-     
-      width="97%"
-      class="ml-auto mr-auto"
-  >
-  <v-app-bar-title width="25%">
-        <h1 class="text-h3  white--text">
-        Приложение</h1>
-        </v-app-bar-title>
+    <v-app-bar app color="#0288D1" class="ml-auto mr-auto">
+      <h1 class="text-subtitle-1 text-lg-h4 text-md-h5 white--text">
+        Тестовое задание
+      </h1>
     </v-app-bar>
 
     <v-main>
-       <router-view/> 
+      <v-container>
+        <router-view />
+      </v-container>
     </v-main>
-    <v-footer
-    padless
-  >
-    <v-card
-      flat
-      tile
-      color="#0288D1"
-      width="97%"
-      class="white--text ml-auto mr-auto text-center"
-    >
+    <v-footer padless>
+      <v-card
+        flat
+        tile
+        color="#0288D1"
+        width="100%"
+        class="white--text ml-auto mr-auto text-center"
+      >
+        <v-card-text class="white--text pt-2">
+          Подкатилова Ольга Владимировна
+        </v-card-text>
 
-      <v-card-text class="white--text pt-0">
-        Подкатилова Ольга Владимировна
-      </v-card-text>
+        <v-divider></v-divider>
 
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-card-text>
-    </v-card>
-  </v-footer>
+        <v-card-text class="white--text">
+          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  
-  data() {
-    return {
+  name: "App",
 
-    }
-  }
+  data() {
+    return {};
+  },
 };
 </script>

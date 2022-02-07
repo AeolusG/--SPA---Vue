@@ -4,36 +4,40 @@ export default {
       let response = await fetch(
         "https://my-json-server.typicode.com/AeolusG/SPA-on-Vue/users"
       );
-      let content = await response.json();
+      let users = await response.json();
 
-      context.commit("mutateUsers", content);
+      context.commit("setUsers", users);
     },
-    async getUser(ctx, id) {
-        let response = await fetch(`https://my-json-server.typicode.com/AeolusG/SPA-on-Vue/users/${id}`);
-        let user = await response.json();
+    async getUser(context, id) {
+      let response = await fetch(
+        `https://my-json-server.typicode.com/AeolusG/SPA-on-Vue/users/${id}`
+      );
+      let user = await response.json();
 
-        ctx.commit('mutateUser', user)
+      context.commit("setUser", user);
     },
   },
- 
+
   mutations: {
-    mutateUsers(state, users) {
+    setUsers(state, users) {
       state.users = users;
     },
-    mutateUser(state, user) {
-        state.user = user;
-    }
+    setUser(state, user) {
+      state.user = user;
+    },
   },
+
   state: {
     users: [],
-    user: null
+    user: null,
   },
+
   getters: {
-    allUsers(state) {
+    users(state) {
       return state.users;
     },
     oneUser(state) {
-        return state.user
-    }
+      return state.user;
+    },
   },
 };
