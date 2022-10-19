@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="#0288D1" class="ml-auto mr-auto">
       <h1 class="text-subtitle-1 text-lg-h4 text-md-h5 white--text">
-        Тестовое задание
+        Таблица с данными пользователей
       </h1>
     </v-app-bar>
 

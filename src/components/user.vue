@@ -88,6 +88,8 @@
         </v-card>
       </v-col>
     </v-row>
+    <div class="loader" v-if="isLoading"></div>
+
     <alert
       v-if="getUserError"
       text="Произошла ошибка. Попробуйте повторить позже. :("
@@ -107,16 +109,43 @@ export default {
   data() {
     return {
       getUserError: false,
+      isLoading: true,
     };
   },
+  beforeDestroy() {
+    this.$store.dispatch("resetData");
+  },
+
   computed: mapGetters(["oneUser"]),
   async created() {
     try {
-      await this.$store.dispatch("getUser", this.$route.params.id);
+      await this.$store.dispatch("fetchUser", this.$route.params.id);
     } catch (error) {
       console.log(`Error ${error}`);
       this.getUserError = true;
+    } finally {
+      this.isLoading = false;
     }
   },
 };
 </script>
+
+<style>
+.loader {
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #0288d1;
+  font-size: 30px;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) bottom left/0% 3px no-repeat;
+  animation: c2 2s linear infinite;
+}
+.loader::before {
+  content: "Loading...";
+}
+@keyframes c2 {
+  to {
+    background-size: 100% 3px;
+  }
+}
+</style>

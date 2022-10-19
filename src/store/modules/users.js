@@ -1,21 +1,8 @@
+import { getUsers, getUser } from "../../api/index";
 export default {
-  actions: {
-    async fetchUsers(context) {
-      let response = await fetch(
-        "https://my-json-server.typicode.com/AeolusG/SPA-on-Vue/users"
-      );
-      let users = await response.json();
-
-      context.commit("setUsers", users);
-    },
-    async getUser(context, id) {
-      let response = await fetch(
-        `https://my-json-server.typicode.com/AeolusG/SPA-on-Vue/users/${id}`
-      );
-      let user = await response.json();
-
-      context.commit("setUser", user);
-    },
+  state: {
+    users: [],
+    user: null,
   },
 
   mutations: {
@@ -25,11 +12,24 @@ export default {
     setUser(state, user) {
       state.user = user;
     },
+    resetUserData(state) {
+      state.user = null;
+    },
   },
 
-  state: {
-    users: [],
-    user: null,
+  actions: {
+    async fetchUsers(context) {
+      let users = await getUsers();
+      context.commit("setUsers", users);
+    },
+
+    async fetchUser(context, id) {
+      let user = await getUser(id);
+      context.commit("setUser", user);
+    },
+    resetData(context) {
+      context.commit("resetUserData");
+    },
   },
 
   getters: {
