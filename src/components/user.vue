@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-row class="align-center">
+      <v-col cols="12" lg="6" xl="5">
+        <v-breadcrumbs :items="items" divider="-"></v-breadcrumbs>
+      </v-col>
+    </v-row>
     <v-row class="d-flex justify-space-around mt-7 align-center" v-if="oneUser">
       <v-col cols="12" lg="6" xl="5">
         <div
@@ -88,6 +93,7 @@
         </v-card>
       </v-col>
     </v-row>
+
     <div class="loader" v-if="isLoading"></div>
 
     <alert
@@ -108,9 +114,25 @@ export default {
   },
   data() {
     return {
+      items: [
+        {
+          text: "Вернуться к таблице",
+          disabled: false,
+          href: "/SPA-on-vue/",
+        },
+        {
+          text: `Пользователь`,
+          disabled: true,
+          href: `table/${this.$route.params.id}`,
+        },
+      ],
       getUserError: false,
       isLoading: true,
     };
+  },
+  beforeUpdate() {
+    this.items[1].text = this.oneUser.name;
+    console.log(this.items[1]);
   },
   beforeDestroy() {
     this.$store.dispatch("resetData");

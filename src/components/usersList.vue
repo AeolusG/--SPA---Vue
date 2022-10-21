@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-row class="align-center">
+      <v-col cols="12" lg="6" xl="5">
+        <v-breadcrumbs :items="items" divider="-"></v-breadcrumbs>
+      </v-col>
+    </v-row>
     <v-card v-if="!fetchUsersError" class="mt-7">
       <v-card
         class="text-left white--text text-subtitle-1 text-lg-h4 text-md-h5 pa-2"
@@ -49,6 +54,13 @@ export default {
   data() {
     return {
       search: "",
+      items: [
+        {
+          text: "Таблица",
+          disabled: false,
+          href: "/SPA-on-vue/",
+        },
+      ],
       headers: [
         {
           text: "Имя пользователя",
