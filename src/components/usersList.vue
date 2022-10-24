@@ -1,17 +1,13 @@
 <template>
   <div>
-    <v-row class="align-center">
-      <v-col cols="12" lg="6" xl="5">
-        <v-breadcrumbs :items="items" divider="-"></v-breadcrumbs>
-      </v-col>
-    </v-row>
     <v-card v-if="!fetchUsersError" class="mt-7">
       <v-card
         class="text-left white--text text-subtitle-1 text-lg-h4 text-md-h5 pa-2"
         color="#0288D1"
       >
-        Список пользователей
+        {{ title }}
       </v-card>
+
       <v-data-table
         :headers="headers"
         :items="users"
@@ -26,6 +22,7 @@
             class="mx-4"
           ></v-text-field>
         </template>
+
         <template v-slot:[`item.name`]="{ item }">
           <router-link
             v-bind="item in users"
@@ -38,7 +35,11 @@
         </template>
       </v-data-table>
     </v-card>
-    <alert v-else text="Произошла ошибка. Попробуйте повторить позже. :(" />
+
+    <alert
+      v-if="fetchUsersError"
+      text="Произошла ошибка. Попробуйте повторить позже. :("
+    />
   </div>
 </template>
 
@@ -54,13 +55,8 @@ export default {
   data() {
     return {
       search: "",
-      items: [
-        {
-          text: "Таблица",
-          disabled: false,
-          href: "/SPA-on-vue/",
-        },
-      ],
+      title: "Список пользователей",
+
       headers: [
         {
           text: "Имя пользователя",
@@ -82,12 +78,13 @@ export default {
       fetchUsersError: false,
     };
   },
+
   computed: mapGetters(["users"]),
+
   async created() {
     try {
       await this.$store.dispatch("fetchUsers");
     } catch (error) {
-      console.log(`Error - ${error}`);
       this.fetchUsersError = true;
     }
   },
@@ -98,6 +95,7 @@ export default {
 .link:hover {
   color: black;
 }
+
 .alert {
   top: 30px;
 }

@@ -2,17 +2,21 @@
   <div>
     <v-row class="align-center">
       <v-col cols="12" lg="6" xl="5">
-        <v-breadcrumbs :items="items" divider="-"></v-breadcrumbs>
+        <v-btn :href="pathToTable" class="ma-2" color="primary">
+          <v-icon dark left> mdi-arrow-left </v-icon>Назад
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row class="d-flex justify-space-around mt-7 align-center" v-if="oneUser">
+
+    <v-row class="d-flex justify-space-around mt-7 align-center" v-if="user">
       <v-col cols="12" lg="6" xl="5">
         <div
           class="text-subtitle-1 text-lg-h4 text-md-h5 white--text pa-2 light-blue darken-2"
         >
-          {{ oneUser.name }}
+          {{ user.name }}
         </div>
-        <v-img :src="oneUser.photo" class="img"> </v-img>
+
+        <v-img :src="user.photo" class="img"> </v-img>
       </v-col>
 
       <v-col cols="12" lg="6" xl="7">
@@ -22,30 +26,35 @@
               <div class="text-subtitle-1 text-lg-h6 text-md-h5 mx-4">
                 Организация
               </div>
+
               <v-text-field
-                v-model="oneUser.company.name"
+                v-model="user.company.name"
                 class="ma-4 text-caption text-lg-subtitle-1 text-md-body-1"
                 readonly
                 outlined
                 solo
               >
               </v-text-field>
+
               <div class="text-subtitle-1 text-lg-h6 text-md-h5 mx-4">
                 Слоган компании
               </div>
+
               <v-text-field
-                v-model="oneUser.company.catchPhrase"
+                v-model="user.company.catchPhrase"
                 class="ma-4 text-caption text-lg-subtitle-1 text-md-body-1"
                 readonly
                 outlined
                 solo
               >
               </v-text-field>
+
               <div class="text-subtitle-1 text-lg-h6 text-md-h5 mx-4">
                 Направление
               </div>
+
               <v-text-field
-                v-model="oneUser.company.bs"
+                v-model="user.company.bs"
                 class="ma-4 text-caption text-lg-subtitle-1 text-md-body-1"
                 readonly
                 outlined
@@ -58,30 +67,35 @@
               <div class="text-subtitle-1 text-lg-h6 text-md-h5 mx-4">
                 Номер телефона
               </div>
+
               <v-text-field
-                v-model="oneUser.phone"
+                v-model="user.phone"
                 class="ma-4 text-caption text-lg-subtitle-1 text-md-body-1"
                 readonly
                 outlined
                 solo
               >
               </v-text-field>
+
               <div class="text-subtitle-1 text-lg-h6 text-md-h5 mx-4">
                 Email
               </div>
+
               <v-text-field
-                v-model="oneUser.email"
+                v-model="user.email"
                 class="ma-4 text-caption text-lg-subtitle-1 text-md-body-1"
                 readonly
                 outlined
                 solo
               >
               </v-text-field>
+
               <div class="text-subtitle-1 text-lg-h6 text-md-h5 mx-4">
                 Адрес проживания
               </div>
+
               <v-text-field
-                v-model="oneUser.address.city"
+                v-model="user.address.city"
                 class="ma-4 text-caption text-lg-subtitle-1 text-md-body-1"
                 readonly
                 outlined
@@ -112,38 +126,21 @@ export default {
   components: {
     alert,
   },
+
   data() {
     return {
-      items: [
-        {
-          text: "Вернуться к таблице",
-          disabled: false,
-          href: "/SPA-on-vue/",
-        },
-        {
-          text: `Пользователь`,
-          disabled: true,
-          href: `table/${this.$route.params.id}`,
-        },
-      ],
       getUserError: false,
       isLoading: true,
+      pathToTable: this.$router.options.routes[0].path,
     };
   },
-  beforeUpdate() {
-    this.items[1].text = this.oneUser.name;
-    console.log(this.items[1]);
-  },
-  beforeDestroy() {
-    this.$store.dispatch("resetData");
-  },
 
-  computed: mapGetters(["oneUser"]),
+  computed: mapGetters(["user"]),
+
   async created() {
     try {
       await this.$store.dispatch("fetchUser", this.$route.params.id);
     } catch (error) {
-      console.log(`Error ${error}`);
       this.getUserError = true;
     } finally {
       this.isLoading = false;
@@ -160,12 +157,14 @@ export default {
   font-size: 30px;
   padding-bottom: 8px;
   background: linear-gradient(currentColor 0 0) bottom left/0% 3px no-repeat;
-  animation: c2 2s linear infinite;
+  animation: line 2s linear infinite;
 }
+
 .loader::before {
-  content: "Loading...";
+  content: "Загрузка...";
 }
-@keyframes c2 {
+
+@keyframes line {
   to {
     background-size: 100% 3px;
   }

@@ -12,7 +12,7 @@ const routes = [
     component: usersList,
   },
   {
-    path: "/table/:id",
+    path: "/:id",
     name: "user",
     component: user,
   },

@@ -9,11 +9,9 @@ export default {
     setUsers(state, users) {
       state.users = users;
     },
+
     setUser(state, user) {
       state.user = user;
-    },
-    resetUserData(state) {
-      state.user = null;
     },
   },
 
@@ -27,16 +25,14 @@ export default {
       let user = await getUser(id);
       context.commit("setUser", user);
     },
-    resetData(context) {
-      context.commit("resetUserData");
-    },
   },
 
   getters: {
     users(state) {
       return state.users;
     },
-    oneUser(state) {
+
+    user(state) {
       return state.user;
     },
   },
