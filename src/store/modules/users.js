@@ -13,6 +13,10 @@ export default {
     setUser(state, user) {
       state.user = user;
     },
+
+    resetUserData(state) {
+      state.user = null;
+    },
   },
 
   actions: {

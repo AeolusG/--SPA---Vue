@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/SPA-on-Vue/",
     name: "table",
     component: usersList,
   },

@@ -2,7 +2,11 @@
   <div>
     <v-row class="align-center">
       <v-col cols="12" lg="6" xl="5">
-        <v-btn :href="pathToTable" class="ma-2" color="primary">
+        <v-btn
+          @click="$router.push({ name: 'table' })"
+          class="ma-2"
+          color="primary"
+        >
           <v-icon dark left> mdi-arrow-left </v-icon>Назад
         </v-btn>
       </v-col>
@@ -131,12 +135,13 @@ export default {
     return {
       getUserError: false,
       isLoading: true,
-      pathToTable: this.$router.options.routes[0].path,
     };
   },
 
   computed: mapGetters(["user"]),
-
+  beforeDestroy() {
+    this.$store.commit("resetUserData");
+  },
   async created() {
     try {
       await this.$store.dispatch("fetchUser", this.$route.params.id);
