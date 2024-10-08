@@ -10,7 +10,7 @@
 
 - Vue Router
 
-###Ссылка на приложение на gh-pages:
+### Ссылка на приложение на gh-pages:
 
 <https://aeolusg.github.io/SPA-on-Vue/>
 
