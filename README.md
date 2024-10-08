@@ -1,4 +1,4 @@
-Тестовое задание на создание SPA с помощью Vue.js
+## Тестовое задание на создание SPA с помощью Vue.js
 
 При создании приложения были использованы следующие инструменты:
 
@@ -10,9 +10,12 @@
 
 - Vue Router
 
-Ссылка на приложение:
+Ссылка на приложение на gh-pages:
+<https://aeolusg.github.io/SPA-on-Vue/>
 
-https://aeolusg.github.io/SPA-on-Vue/
+Иллюстрации к проекту:
+![Иллюстрация к проекту](https://github.com/AeolusG/SPA-on-Vue/blob/main/src/assets/imgs/promo.png) 
+![Иллюстрация к проекту](https://github.com/AeolusG/SPA-on-Vue/blob/main/src/assets/imgs/promo2.png) 
 
 ## Project setup
 
@@ -26,18 +29,3 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
