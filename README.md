@@ -18,13 +18,13 @@
 ![Иллюстрация к проекту](https://github.com/AeolusG/SPA-on-Vue/blob/main/src/assets/imgs/promo.png) 
 ![Иллюстрация к проекту](https://github.com/AeolusG/SPA-on-Vue/blob/main/src/assets/imgs/promo2.png) 
 
-## Project setup
+## Установка зависимостей
 
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Запустить приложение в браузере
 
 ```
 npm run serve
